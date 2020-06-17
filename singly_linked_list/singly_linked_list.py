@@ -65,13 +65,16 @@ class LinkedList:
 
     # return the largest (maximum) number in the linked list
     def get_max(self):
-        current_node = self.head
+        if self.head is None:
+            return None
+
+        current_node = self.head.next_node
         maximum = self.head.value
 
         while current_node is not None:
             # if the current node's value is greater than the value set the current node as max
-            if maximum < current_node.value:
+            if current_node.value > maximum:
                 maximum = current_node.value
             # otherwise, go to the next node
             current_node = current_node.next_node
-        return None
+        return maximum

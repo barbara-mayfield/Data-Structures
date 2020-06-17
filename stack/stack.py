@@ -47,10 +47,10 @@ class Stack:
     def __len__(self):
         return self.size
 
-    def enqueue(self, value):
+    def push(self, value):
         pass
 
-    def dequeue(self):
+    def pop(self):
         pass
 
 
