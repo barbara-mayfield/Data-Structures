@@ -50,10 +50,15 @@ class Stack:
         return self.size
 
     def push(self, value):
-        pass
+        self.storage.add_to_tail(value)
+        self.size += 1
 
     def pop(self):
-        pass
+        if self.size is not 0:
+            self.size -= 1
+            return self.storage.remove_tail()
+        else:
+            return None
 
 
 """
