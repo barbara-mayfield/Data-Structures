@@ -20,19 +20,24 @@ class BSTNode:
     # Insert the given value into the tree
     def insert(self, value):
         # take the current value of our node (self.value)
+        current_value = self.value
+
         # compare to the new value we want to insert
+        if value < current_value:
+            # IF self.left is already taken by a node,
+            if self.left:
+                # make that (left) node call insert
+                new_value = self.left.insert(value)
+                # set the left child to the new node with the new value
+                return new_value
 
-        # IF new value <= self.value
-        # IF self.left is already taken by a node,
-        # make that (left) node call insert
-        # set the left child to the new node with the new value
-
-        # IF new value is >= self.value
-        # IF self.right is already taken by a node,
-        # make that (right) node call insert
+        elif value >= self.value:
+            # IF self.right is already taken by a node,
+            if self.right:
+                # make that (right) node call insert
+                new_value = self.right.insert(value)
         # set the right child to the new node with new value
-
-        pass
+                return new_value
 
     # Return True if the tree contains the value
     # False if it does not
@@ -40,32 +45,46 @@ class BSTNode:
         if self.value == target:
             return True
 
-        # compare the target to current value
-        # if current value < target
-        found = False
-        if self.value < target:
+        # compare the target to the current value
+        # if current value > target
+        if self.value > target:
+            # check the left subtree
             # if you cannot go left, return False
             if self.left is None:
                 return False
-            # check the left subtree (self.left.contains(target))
             found = self.left.contains(target)
 
-        # if current value < target
-        if self.value >= target:
+        # if current value <= target
+        elif self.value <= target:
+            # check if right subtree contains target
             # if you cannot go right, return False
             if self.right is None:
                 return False
-            # check if right subtree contains target
             found = self.right.contains(target)
+
         return found
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # the largest value will always be to the right of the current node
+        # if we can go right, lets find the largest number there by calling get_max on the right subtree
+        # if we cannot go right, return the current value
+        max_val = self.right.value
+
+        if self.value > max_val:
+            max_val = self.value
+        return max_val
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        # call function on the current value fn(self.value)
+        fn(self.value)
+        # if you can go left, call for_each on the left tree
+        if self.left is not None:
+            self.right.for_each(fn)
+        # if you can go right, call for_each on the right tree
+        if self.right is not None:
+            self.left.for_each(fn)
 
     # Part 2 -----------------------
 
