@@ -111,12 +111,26 @@ class BSTNode:
     # in an iterative breadth first traversal
     def bft_print(self, node):
         # create a queue for nodes (FIFO)
-        # add the first node to the queue
+        queue = Queue()
+        # add the first node (root) to the queue
+        queue.enqueue(node)
         # while queue is not empty
-        # remove the first node from the queue
-        # print the removed node
-        # add all children into the queue
-        pass
+        while queue.size > 0:
+            # remove the node from the queue
+            dequeued = queue.dequeue()
+            # print the value of the node
+            print(dequeued.value)
+
+            # add all children into the queue
+            # if the queued node has children on the left
+            if dequeued.left:
+                # add child to the queue
+                queue.enqueue(dequeued.left)
+            # if the queued node has children on the right
+            if dequeued.right:
+                # add child to the queue
+                queue.enqueue(dequeued.right)
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
