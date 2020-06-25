@@ -131,9 +131,9 @@ class BSTNode:
                 # add child to the queue
                 queue.enqueue(dequeued.right)
 
-
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+
     def dft_print(self, node):
         # create a stack for nodes
         stack = Stack()
@@ -142,11 +142,11 @@ class BSTNode:
 
         # while stack is not empty
         while stack.size != 0:
-        # get the current node from the top of the stack
+            # get the current node from the top of the stack
             popped = stack.pop()
         # print that node
             print(popped.value)
-        
+
         # add all children to the stack
         # keep in mind the order you add children will matter
             if popped.left:
@@ -157,10 +157,30 @@ class BSTNode:
     # Stretch Goals -------------------------
     # Note: Research may be required
 
+    # Preorder & Postorder visit the root node at different times
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        # visit and print root value
+        print(node.value)
+
+        # traverse the left side of the tree
+        if node.left:
+            # print left side values
+            node.pre_order_dft(node.left)
+        # traverse the right side of the tree
+        if node.right:
+            # print right side values
+            node.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        # traverse the left side of the tree
+        if node.left:
+            # print left side values
+            node.post_order_dft(node.left)
+        # traverse the right side of the tree
+        if node.right:
+            # print right side values
+            node.post_order_dft(node.right)
+        # visit and print root value
+        print(node.value)
